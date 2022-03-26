@@ -4,11 +4,11 @@ const initialState = {
   value: 0,
 }
 
-export const counterSlice = createSlice({
-  name: 'counter',
+export const weatherSlice = createSlice({
+  name: 'weather',
   initialState,
   reducers: {
-    increment: (state) => {
+    getWeatherByCity: (state) => {
       // Redux Toolkit allows us to write "mutating" logic in reducers. It
       // doesn't actually mutate the state because it uses the Immer library,
       // which detects changes to a "draft state" and produces a brand new
@@ -18,13 +18,11 @@ export const counterSlice = createSlice({
     decrement: (state) => {
       state.value -= 1
     },
-    incrementByAmount: (state, action) => {
-      state.value += action.payload
-    },
+  
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount } = counterSlice.actions
+export const { getWeatherByCity, decrement } = weatherSlice.actions
 
-export default counterSlice.reducer
+export default weatherSlice.reducer
