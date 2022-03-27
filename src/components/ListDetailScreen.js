@@ -35,7 +35,7 @@ const ListDetailScreen = ({navigation}) => {
         <ListItem
           weatherName={item.weather?.[0].main}
           temp={item.main?.temp}
-          onPress={() => navigation.navigate('DetailScreen', {_id: index})}
+          onPress={() => navigation.navigate('DetailWeather', {_id: index})}
         />
       )}
       showsVerticalScrollIndicator={false}
