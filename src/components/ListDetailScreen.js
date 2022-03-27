@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {StyleSheet, FlatList, Text} from 'react-native';
 import {useSelector} from 'react-redux';
+import ListItem from './ListItem';
 
 const ListDetailScreen = ({navigation}) => {
   const {weatherData} = useSelector(state => state.weather);
@@ -31,9 +32,11 @@ const ListDetailScreen = ({navigation}) => {
       keyExtractor={(item, index) => index.toString()}
       onEndReached={getData}
       renderItem={({item, index}) => (
-        <Text style={styles.item}>
-          {index}index:{item.main?.temp}
-        </Text>
+        <ListItem
+          weatherName={item.weather?.[0].main}
+          temp={item.main?.temp}
+          onPress={() => navigation.navigate('DetailScreen', {_id: index})}
+        />
       )}
       showsVerticalScrollIndicator={false}
     />

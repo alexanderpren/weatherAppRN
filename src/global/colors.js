@@ -4,5 +4,6 @@ export const COLORS = {
     white: '#fff',
     lineColor: '#929292',
     headerColor: '#5e4fcb',
+    textColor: '#000',
     // your colors
   }
