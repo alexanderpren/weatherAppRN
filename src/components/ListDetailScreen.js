@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {StyleSheet, FlatList, Text} from 'react-native';
 import {useSelector} from 'react-redux';
+import {Round} from '../utils/tools';
 import ListItem from './ListItem';
 
 const ListDetailScreen = ({navigation}) => {
@@ -34,7 +35,7 @@ const ListDetailScreen = ({navigation}) => {
       renderItem={({item, index}) => (
         <ListItem
           weatherName={item.weather?.[0].main}
-          temp={item.main?.temp}
+          temp={Round(item.main?.temp)}
           onPress={() => navigation.navigate('DetailWeather', {_id: index})}
         />
       )}
