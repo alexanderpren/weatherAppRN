@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.backgroundColor,
         borderRadius: 10,
         borderWidth: 1,
-        borderColor: 'gray',
+        borderColor: COLORS.lineColor,
     },
     submitText: {
         color: 'black',

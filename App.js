@@ -13,7 +13,7 @@ LogBox.ignoreLogs([
 
 
 const AppNavigator = createStackNavigator({
-  Home: { screen: HomeScreen },
+  Home: { screen: HomeScreen, navigationOptions: { headerShown: false } },
   ListDetail: { screen: ListDetailScreen },
   Detail: { screen: DetailScreen },
 }, { initialRouteName: 'Home' });

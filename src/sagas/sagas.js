@@ -3,7 +3,7 @@ import { getWeatherByCity } from "../slices/weatherSlice";
 
 
 function* getCityWeather() {
-console.log("Que ondaaaa");
+    console.log("Que ondaaaa");
     /*  try{
          const response = yield call(fetch, 'https://api.openweathermap.org/data/2.5/weather?q=London&appid=b6907d289e10d714a6e88b30761fae22');
          const data = yield response.json();
@@ -13,7 +13,7 @@ console.log("Que ondaaaa");
      } */
 }
 
-export default  function* rootSaga() {
-    yield takeEvery('GET_CITY_WEATHER', getCityWeather);
+export default function* rootSaga() {
+    yield takeEvery(getWeatherByCity.type, getCityWeather);
 }
 

@@ -4,6 +4,7 @@ import { Formik } from 'formik';
 import { COLORS } from '../global/colors';
 import { CityForm } from './CityForm';
 import * as Yup from 'yup';
+import { getWeatherByCity } from '../slices/weatherSlice';
 
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -17,16 +18,18 @@ const DisplayingErrorMessagesSchema = Yup.object().shape({
 });
 
 const HomeScreen = () => {
-  const count = useSelector(state => state.weather.value);
+  const dispatch = useDispatch()
 
-  const handleChange = (value) => {
-    console.log(value);
+
+  const handleSubmit = (value) => {
+    console.log("si llega")
+    dispatch(getWeatherByCity(value));
   }
 
   return (
     <SafeAreaView style={styles.sectionContainer}>
       <Formik
-        onSubmit={handleChange}
+        onSubmit={handleSubmit}
         validateOnChange={false}
         validateOnBlur={false}
         validationSchema={DisplayingErrorMessagesSchema}
