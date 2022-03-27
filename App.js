@@ -1,24 +1,21 @@
 
 import React from 'react';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import HomeScreen from "../WeatherApp/src/components/HomeScreen";
+import ListDetailScreen from "../WeatherApp/src/components/ListDetailScreen";
+import DetailScreen from "../WeatherApp/src/components/DetailScreen";
+import { LogBox } from 'react-native';
 
-import {SafeAreaView, StyleSheet, Text} from 'react-native';
-import {COLORS} from "./src/global/colors";
+LogBox.ignoreLogs([
+  "[react-native-gesture-handler] Seems like you\'re using an old API with gesture components, check out new Gestures system!",
+]);
 
-const App = () => {
-  return (
-    <SafeAreaView style={styles.sectionContainer}>
-      <Text>Try editing me! 🎉</Text>
-    </SafeAreaView>
-  );
-};
 
-const styles = StyleSheet.create({
-  sectionContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: COLORS.backgroundColor,
-  },
-});
+const AppNavigator = createStackNavigator({
+  Home: { screen: HomeScreen },
+  ListDetail: { screen: ListDetailScreen },
+  Detail: { screen: DetailScreen },
+}, { initialRouteName: 'Home' });
 
-export default App;
+export default createAppContainer(AppNavigator);

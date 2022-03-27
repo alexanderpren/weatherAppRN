@@ -13,7 +13,7 @@ console.log("Que ondaaaa");
      } */
 }
 
-export  function* rootSaga() {
-    yield takeEvery(getCityWeather.type, getCityWeather);
+export default  function* rootSaga() {
+    yield takeEvery('GET_CITY_WEATHER', getCityWeather);
 }
 
