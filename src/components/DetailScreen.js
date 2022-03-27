@@ -1,8 +1,11 @@
-import React from 'react'
+import React from 'react';
+
+import { View, Text } from 'react-native';
+
 
 const DetailScreen = () => {
   return (
-    <div>DetailScreen</div>
+    <View>DetailScreen</View>
   )
 }
 

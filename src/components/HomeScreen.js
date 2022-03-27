@@ -1,29 +1,21 @@
-import React, { useCallback } from 'react';
+import React, { } from 'react';
 import { SafeAreaView, StyleSheet, TextInput, Button, Text } from 'react-native';
 import { Formik } from 'formik';
 import { COLORS } from '../global/colors';
 import { CityForm } from './CityForm';
-import * as Yup from 'yup';
 import { getWeatherByCity } from '../slices/weatherSlice';
+import { DisplayingErrorMessagesSchema } from '../utils/tools';
+import { useDispatch } from 'react-redux';
 
-import { useSelector, useDispatch } from 'react-redux';
-
-const DisplayingErrorMessagesSchema = Yup.object().shape({
-  city: Yup.string()
-    .required('Required')
-    .min(3, 'Must be at least 3 characters long')
-    .matches(/^[aA-zZ\s]+$/, "Only letters are allowed for this field ")
-    .max(15, 'Must be 15 characters or less'),
-
-});
-
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
   const dispatch = useDispatch()
 
+  const handleSubmit = (value, onSubmitProps) => {
+    dispatch(getWeatherByCity({ cityToFind: value.city }));
+    onSubmitProps.setSubmitting(false);
+    onSubmitProps.resetForm();
+    navigation.navigate("ListDetail")
 
-  const handleSubmit = (value) => {
-    console.log("si llega")
-    dispatch(getWeatherByCity(value));
   }
 
   return (
@@ -40,6 +32,10 @@ const HomeScreen = () => {
   );
 };
 
+HomeScreen.navigationOptions = {
+  headerShown: false,
+}
+
 const styles = StyleSheet.create({
   sectionContainer: {
     flex: 1,
@@ -48,5 +44,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.backgroundColor,
   },
 });
+
+
 
 export default HomeScreen;

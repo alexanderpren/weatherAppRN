@@ -1,16 +1,30 @@
 import { takeEvery, put, call } from 'redux-saga/effects';
-import { getWeatherByCity } from "../slices/weatherSlice";
+import { getWeatherByCity, setWeatherByCity } from "../slices/weatherSlice";
+import { weatherAPI } from "../../src/api/Weather";
 
 
-function* getCityWeather() {
-    console.log("Que ondaaaa");
-    /*  try{
-         const response = yield call(fetch, 'https://api.openweathermap.org/data/2.5/weather?q=London&appid=b6907d289e10d714a6e88b30761fae22');
-         const data = yield response.json();
-         yield put({type: 'SET_WEATHER', payload: data});
-     }catch(error){
-         console.log(error);
-     } */
+const getWeatherFromAPI = async (cityToFind) =>
+    await weatherAPI.getWeatherByCity(cityToFind)
+        .then((response) => response)
+        .catch((error) => error);
+
+
+function* getCityWeather({ payload }) {
+    const { cityToFind } = payload;
+
+    try {
+        const response = yield call(getWeatherFromAPI, cityToFind);
+        if (response.message) {
+
+        } else {
+            yield put(setWeatherByCity(response));
+
+        }
+
+
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 export default function* rootSaga() {

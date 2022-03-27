@@ -12,14 +12,17 @@ export const weatherSlice = createSlice({
     getWeatherByCity: (state, action) => {
 
     },
-    setWeatherByCity: (state) => {
-      state.value -= 1
+    setWeatherByCity: (state, action) => {
+
+      const { name, country } = action.payload.cities.city
+      state.cityName = name + ', ' + country;
+
     },
 
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { getWeatherByCity, decrement } = weatherSlice.actions
+export const { getWeatherByCity, setWeatherByCity } = weatherSlice.actions
 
 export default weatherSlice.reducer
