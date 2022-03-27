@@ -15,6 +15,7 @@ function* getCityWeather({ payload }) {
     try {
         const response = yield call(getWeatherFromAPI, cityToFind);
         if (response.message) {
+            console.log("Si cacha el error");
 
         } else {
             yield put(setWeatherByCity(response));

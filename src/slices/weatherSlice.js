@@ -1,28 +1,24 @@
-import { createSlice } from '@reduxjs/toolkit'
+import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
-  cityData: "",
-  cityName: "",
-}
+  weatherData: '',
+  cityName: '',
+};
 
 export const weatherSlice = createSlice({
   name: 'weather',
   initialState,
   reducers: {
-    getWeatherByCity: (state, action) => {
-
-    },
+    getWeatherByCity: (state, action) => {},
     setWeatherByCity: (state, action) => {
-
-      const { name, country } = action.payload.cities.city
+      const {name, country} = action.payload.cities.city;
       state.cityName = name + ', ' + country;
-
+      state.weatherData = action.payload.cities.list;
     },
-
   },
-})
+});
 
 // Action creators are generated for each case reducer function
-export const { getWeatherByCity, setWeatherByCity } = weatherSlice.actions
+export const {getWeatherByCity, setWeatherByCity} = weatherSlice.actions;
 
-export default weatherSlice.reducer
+export default weatherSlice.reducer;

@@ -17,10 +17,6 @@ const ListDetailScreen = ({ navigation }) => {
 }
 
 
-ListDetailScreen.navigationOptions = {
-  headerShown: true,
-  title: 'que onda',
-}
 
 
 
