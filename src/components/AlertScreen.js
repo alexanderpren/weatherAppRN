@@ -1,32 +1,30 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import AwesomeAlert from 'react-native-awesome-alerts';
+import {useSelector, useDispatch} from 'react-redux';
+import {closeAlert} from '../slices/weatherSlice';
 
-const AlertScreen = ({ msg, display }) => {
+const AlertScreen = ({alertMessage, alertTitle, showAlert}) => {
+  const dispatch = useDispatch();
 
-    const [showAlert, setShowAlert] = useState(display);
-    return (
-        <>
-            <AwesomeAlert
-                show={showAlert}
-                showProgress={false}
-                title="AwesomeAlert"
-                message="I have a message for you!"
-                closeOnTouchOutside={true}
-                closeOnHardwareBackPress={false}
-                showCancelButton={true}
-                showConfirmButton={true}
-                cancelText="No, cancel"
-                confirmText="Yes, delete it"
-                confirmButtonColor="#DD6B55"
-                onCancelPressed={() => {
-                    showAlert(!showAlert);
-                }}
-                onConfirmPressed={() => {
-                    showAlert(!showAlert);
-                }}
-            />
-        </>
-    )
-}
+  const CloseAlert = () => {
+    dispatch(closeAlert());
+  };
 
-export default AlertScreen
+  return (
+    <>
+      <AwesomeAlert
+        show={showAlert}
+        showProgress={false}
+        title={alertTitle}
+        message={alertMessage}
+        closeOnTouchOutside={true}
+        closeOnHardwareBackPress={false}      
+        showConfirmButton={true}
+        confirmButtonColor="#DD6B55"       
+        onConfirmPressed={CloseAlert}
+      />
+    </>
+  );
+};
+
+export default AlertScreen;

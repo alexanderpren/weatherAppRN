@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import {View, Text, Image, StyleSheet} from 'react-native';
 import {URL_IMAGE} from '../global/constants';
 import {useSelector} from 'react-redux';
-import useFetch from '../hooks/useFetch';
 import {COLORS} from '../global/colors';
 import {Round} from '../utils/tools';
 
@@ -13,6 +12,7 @@ const DetailScreen = ({navigation, route}) => {
   const icon = URL_IMAGE + weatherData[_id].weather[0].icon + '.png';
 
   const [state, setState] = useState(weatherData[_id]);
+  const [error, setError] = useState(false);
 
   return (
     <View style={styles.mainContainer}>
@@ -23,11 +23,10 @@ const DetailScreen = ({navigation, route}) => {
       </View>
       <View style={styles.feelsContainer}>
         <Text style={styles.feelsText}>
-          Fells Like:
+          Feels Like:
           {state ? Round(state.main?.feels_like) : null}
         </Text>
       </View>
-
       <View style={styles.containerWeatherType}>
         <Text style={styles.type}>{state ? state?.weather[0].main : ''}</Text>
         <Text style={styles.description}>
@@ -35,12 +34,19 @@ const DetailScreen = ({navigation, route}) => {
         </Text>
       </View>
 
-      <Image
-        style={styles.image}
-        source={{
-          uri: icon,
-        }}
-      />
+      {!error ? (
+        <Image
+          style={styles.image}
+          source={{
+            uri: icon,
+          }}
+          onError={() => {
+            setError(true);
+          }}
+        />
+      ) : (
+        <Text>No Image</Text>
+      )}
     </View>
   );
 };

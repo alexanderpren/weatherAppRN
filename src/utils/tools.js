@@ -19,7 +19,7 @@ export const validate = values => {
 };
 
 export const getErrorMessage = e => {
-  let errorString = 'Errors:';
+  let errorString = 'Error:' + e.response.status;
   let data = [];
 
   if (!e.response) {

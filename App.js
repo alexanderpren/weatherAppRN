@@ -8,6 +8,7 @@ import {LogBox} from 'react-native';
 import {useSelector} from 'react-redux';
 import {COLORS} from '../WeatherApp/src/global/colors';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { navigationRef } from '../WeatherApp/src/utils/RootNavigation';
 
 LogBox.ignoreLogs([
   "[react-native-gesture-handler] Seems like you're using an old API with gesture components, check out new Gestures system!",
@@ -19,7 +20,7 @@ function App({navigation}) {
   const {cityName} = useSelector(state => state.weather);
 
   return (
-    <NavigationContainer>
+    <NavigationContainer  ref={navigationRef}>
       <Stack.Navigator
         initialRouteName={HomeScreen}
         screenOptions={({navigation, route}) => ({
