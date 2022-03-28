@@ -24,7 +24,6 @@ export const weatherSlice = createSlice({
       state.alertMessage = action.payload.message.data[1].message;
     },
     closeAlert: (state, action) => {
-      console.log('Si esta cerrando');
       state.showAlert = false;
       state.alertTitle = '';
       state.alertMessage = '';
